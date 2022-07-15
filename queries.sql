@@ -59,3 +59,37 @@ SELECT AVG(escape_attemps) as avg_escapes, species
 FROM animals 
 WHERE date_of_birth BETWEEN '01-01-1990' AND '12-31-2000' 
 GROUP BY species;
+
+
+
+SELECT name 
+FROM animals 
+JOIN owners ON owners.full_name = 'Melody Pond' AND owners.id = animals.owner_id;
+
+
+SELECT * 
+FROM animals 
+JOIN species ON species.name = 'Pokemon' AND species.id = animals.species_id;
+
+
+SELECT name, full_name 
+FROM animals 
+RIGHT OUTER JOIN owners ON animals.owner_id = owners.id;
+
+SELECT COUNT(*), species.name from animals join species on  animals.species_id = species.id GROUP by species.name;
+
+
+SELECT animals.name, animals.species_id, owners.full_name AS owner 
+FROM animals 
+JOIN owners ON owners.full_name = 'Jennifer Orwell' AND animals.species_id = (SELECT id FROM species WHERE name = 'Digimon') AND owners.id = animals.owner_id;
+
+
+SELECT animals.name, animals.escape_attemps, owners.full_name AS owner 
+FROM animals 
+JOIN owners ON owners.full_name = 'Dean Winchester' AND animals.escape_attemps = 0 AND owners.id = animals.owner_id;
+
+SELECT COUNT(*), owners.full_name AS owner FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+GROUP BY owners.full_name 
+ORDER BY COUNT(*) DESC 
+LIMIT 1;
