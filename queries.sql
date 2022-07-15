@@ -82,3 +82,14 @@ SELECT COUNT(*), species.name from animals join species on  animals.species_id =
 SELECT animals.name, animals.species_id, owners.full_name AS owner 
 FROM animals 
 JOIN owners ON owners.full_name = 'Jennifer Orwell' AND animals.species_id = (SELECT id FROM species WHERE name = 'Digimon') AND owners.id = animals.owner_id;
+
+
+SELECT animals.name, animals.escape_attemps, owners.full_name AS owner 
+FROM animals 
+JOIN owners ON owners.full_name = 'Dean Winchester' AND animals.escape_attemps = 0 AND owners.id = animals.owner_id;
+
+SELECT COUNT(*), owners.full_name AS owner FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+GROUP BY owners.full_name 
+ORDER BY COUNT(*) DESC 
+LIMIT 1;
