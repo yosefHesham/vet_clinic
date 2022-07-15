@@ -17,3 +17,16 @@ BEGIN;
 Update animals SET species='unspecified'
 
 SELECT species from animals;
+
+
+BEGIN;
+Update animals set species='pokemon';
+Update animals set species='digimon' where name like '%mon';
+COMMIT;
+
+SELECT name, species from animals;
+
+BEGIN;
+DELETE from animals;
+ROLLBACK;
+SELECT * from animals;
